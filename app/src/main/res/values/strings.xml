@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">PizzaApp</string>
+    <string name="name_item_1">Меню</string>
+    <string name="name_item_2">Профиль</string>
+    <string name="name_item_3">Корзина</string>
+
+    <string-array name="city">
+        <item>Москва</item>
+        <item>Орёл</item>
+        <item>Уфа</item>
+        <item>Псков</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="price_text_btn">от 345р</string>
+    <string name="name_pizza">Буффало</string>
+    <string name="product_description">Ветчина,шампиньоны, увеличинная порция моцареллы, томатный соус Буффало</string>
+</resources>
