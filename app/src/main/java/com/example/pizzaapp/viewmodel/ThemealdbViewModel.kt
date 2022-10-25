@@ -8,24 +8,25 @@ import com.example.pizzaapp.network.RetrofitService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.logging.Logger
 
 class ThemealdbViewModel: ViewModel() {
     //Live Data
-    var themealDataList = MutableLiveData<List<ThemealdbResponce>>()
+    val themealDataList = MutableLiveData<ThemealdbResponce>()
 
-    fun getApiData(){
+    fun getApiData(categories: String){
         val retrofitService = RetrofitInstance.getRetrofitInstance().create(RetrofitService::class.java)
 
-        retrofitService.getData().enqueue(object : Callback<List<ThemealdbResponce>>{
+        retrofitService.getData(categories).enqueue(object : Callback<ThemealdbResponce>{
             override fun onResponse(
-                call: Call<List<ThemealdbResponce>>,
-                response: Response<List<ThemealdbResponce>>
+                call: Call<ThemealdbResponce>,
+                response: Response<ThemealdbResponce>
             ) {
                 //Success
                 themealDataList.value = response.body()
             }
 
-            override fun onFailure(call: Call<List<ThemealdbResponce>>, t: Throwable) {
+            override fun onFailure(call: Call<ThemealdbResponce>, t: Throwable) {
                 //
             }
 

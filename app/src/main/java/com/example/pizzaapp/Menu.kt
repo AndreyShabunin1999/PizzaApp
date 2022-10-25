@@ -14,8 +14,11 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
+import com.example.pizzaapp.adapter.CategoriesAdapter
 import com.example.pizzaapp.adapter.ThemealdbAdapter
+import com.example.pizzaapp.model.responce.CategoriesResponce
 import com.example.pizzaapp.model.responce.ThemealdbResponce
+import com.example.pizzaapp.viewmodel.CategoriesViewModel
 import com.example.pizzaapp.viewmodel.ThemealdbViewModel
 
 class Menu : Fragment() {
@@ -25,30 +28,32 @@ class Menu : Fragment() {
     private lateinit var imageList:ArrayList<Int>
     private lateinit var adapter: ImageAdapter
     private lateinit var rvThemealdbList: RecyclerView
-
+    private lateinit var rvList_btn_category: RecyclerView
+    private lateinit var vi: View
     private lateinit var themealdbViewModel: ThemealdbViewModel
+    private lateinit var categoriesViewModel: CategoriesViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_menu, container, false)
+        vi = inflater.inflate(R.layout.fragment_menu, container, false)
+        return vi
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        initThemealdbApi()
+        initThemealdbApi("Beef")
+        initCategoriesApi()
     }
 
     override fun onStart() {
         super.onStart()
-
-
         init_slider()
     }
 
     private fun init_slider(){
-        viewPager2 = view?.findViewById(R.id.viewPager2)!!
+        viewPager2 = vi.findViewById(R.id.viewPager2)
         handler = Handler(Looper.myLooper()!!)
         imageList = ArrayList()
 
@@ -79,22 +84,41 @@ class Menu : Fragment() {
         viewPager2.setPageTransformer(transformer)
     }
 
-    fun initThemealdbApi(){
+    fun initThemealdbApi(querry: String){
         themealdbViewModel = ViewModelProvider(this).get(ThemealdbViewModel::class.java)
 
-        themealdbViewModel.getApiData()
+        themealdbViewModel.getApiData(querry)
 
         themealdbViewModel.themealDataList.observe(this, Observer {
             initAdapter(it)
         })
     }
 
-    private fun initAdapter(data: List<ThemealdbResponce>){
-        rvThemealdbList = view?.findViewById(R.id.rvThemealdbList)!!
+    fun initCategoriesApi(){
+        categoriesViewModel = ViewModelProvider(this).get(CategoriesViewModel::class.java)
+
+        categoriesViewModel.getApiData()
+
+        categoriesViewModel.categoriesDataList.observe(this, Observer {
+            initAdapterCat(it)
+        })
+    }
+
+    private fun initAdapter(data: ThemealdbResponce){
+        rvThemealdbList = vi.findViewById(R.id.rvThemealdbList)
         rvThemealdbList.layoutManager = LinearLayoutManager(activity)
         val adapter = ThemealdbAdapter(data)
         rvThemealdbList.adapter = adapter
-
     }
 
+    private fun initAdapterCat(data: CategoriesResponce){
+        val layoutManager = LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL, false)
+
+        rvList_btn_category = vi.findViewById(R.id.rvList_btn_category)
+        rvList_btn_category.layoutManager = layoutManager
+
+        val adapter = CategoriesAdapter(data, this::initThemealdbApi)
+
+        rvList_btn_category.adapter = adapter
+    }
 }

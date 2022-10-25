@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:id="@+id/card"
+    android:layout_width="100dp"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:layout_margin="10dp">
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Button3"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/cat_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_item_prod"
+        android:gravity="center"
+        android:textSize="11sp"
+        android:background="@color/white"
+        android:textColor="@color/black"/>
+
+</androidx.cardview.widget.CardView>

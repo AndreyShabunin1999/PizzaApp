@@ -16,4 +16,5 @@
     <string name="price_text_btn">от 345р</string>
     <string name="name_pizza">Буффало</string>
     <string name="product_description">Ветчина,шампиньоны, увеличинная порция моцареллы, томатный соус Буффало</string>
+    <string name="btn_item_prod">Рыба</string>
 </resources>

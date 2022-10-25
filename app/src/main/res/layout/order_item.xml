@@ -3,57 +3,72 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal">
-
-    <ImageView
-        android:id="@+id/image_eat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/buffalo"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:padding="10dp"/>
+    android:orientation="horizontal"
+    android:layout_marginBottom="15dp">
 
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintLeft_toRightOf="@+id/image_eat"
-        app:layout_constraintRight_toRightOf="parent"
+        android:id="@+id/layout_item"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:padding="10dp">
+        android:weightSum="4">
 
-        <TextView
-            android:id="@+id/product_name"
+        <ImageView
+            android:id="@+id/image_eat"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:layout_weight="2"
+            android:paddingTop="10dp"
+            android:padding="10dp"
+            android:src="@drawable/buffalo"
+            app:layout_constraintRight_toLeftOf="@+id/layout_desc"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/layout_desc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="left"
-            android:text="@string/name_pizza"
-            android:textColor="@color/black"
-            android:textSize="15sp"
-            android:textStyle="bold" />
+            android:orientation="vertical"
+            app:layout_constraintLeft_toRightOf="@+id/image_eat"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:paddingEnd="10dp"
+            android:layout_weight="2">
 
-        <TextView
-            android:id="@+id/product_description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="@string/product_description"
-            android:textSize="14sp"
-            />
+            <TextView
+                android:id="@+id/product_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:text="@string/name_pizza"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                />
 
-        <Button
-            android:id="@+id/btn_price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/btn_round"
-            android:textColor="@color/purple_500"
-            android:text="@string/price_text_btn"
-            android:layout_gravity="right"/>
+            <TextView
+                android:id="@+id/product_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="@string/product_description"
+                android:textSize="14sp"
+                />
 
-
+            <Button
+                android:id="@+id/btn_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_round"
+                android:textColor="@color/purple_500"
+                android:text="@string/price_text_btn"
+                android:layout_gravity="right" />
+        </LinearLayout>
     </LinearLayout>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
